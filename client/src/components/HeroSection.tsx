@@ -106,7 +106,7 @@ export default function HeroSection() {
   const projectImages = [
     { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", alt: "Python", className: "hidden lg:block top-1/4 left-[8%]", delay: 0.8 },
     { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg", alt: "C", className: "hidden lg:block top-1/3 right-[8%]", delay: 1 },
-    { src: "/assembly.svg", alt: "Assembly", className: "hidden lg:block bottom-1/4 left-[12%]", delay: 1.2 },
+    { src: `${import.meta.env.BASE_URL}assembly.svg`, alt: "Assembly", className: "hidden lg:block bottom-1/4 left-[12%]", delay: 1.2 },
     { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg", alt: "Rust", className: "hidden lg:block bottom-1/3 right-[12%] invert", delay: 1.4 },
 
   ];
