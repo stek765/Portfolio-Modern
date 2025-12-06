@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowDown } from 'lucide-react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, useSpring, type MotionValue } from 'framer-motion';
 
 const words = ["embedded systems", "low-level code", "security", "firmware", "microcontrollers"];
 
@@ -44,26 +44,13 @@ function TypeWriter() {
   );
 }
 
-function FloatingImage({ src, alt, className, delay }: { src: string; alt: string; className: string; delay: number }) {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+function FloatingImage({ src, alt, className, delay, mouseX, mouseY }: { src: string; alt: string; className: string; delay: number; mouseX: MotionValue; mouseY: MotionValue }) {
   const smoothX = useSpring(mouseX, { damping: 30, stiffness: 100 });
   const smoothY = useSpring(mouseY, { damping: 30, stiffness: 100 });
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      mouseX.set((clientX - innerWidth / 2) / 30);
-      mouseY.set((clientY - innerHeight / 2) / 30);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
-
   return (
     <motion.div
-      className={`absolute ${className}`}
+      className={`absolute ${className} will-change-transform`}
       initial={{ opacity: 0, scale: 0.8, y: 50 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.8, delay }}
@@ -95,6 +82,23 @@ export default function HeroSection() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
   const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+  
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  useEffect(() => {
+    // Disable mouse parallax on mobile/touch devices to save performance
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      mouseX.set((clientX - innerWidth / 2) / 30);
+      mouseY.set((clientY - innerHeight / 2) / 30);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
 
   const scrollToProjects = () => {
     const element = document.querySelector('#projects');
@@ -120,7 +124,7 @@ export default function HeroSection() {
       data-testid="section-hero"
     >
       {projectImages.map((img, i) => (
-        <FloatingImage key={i} {...img} />
+        <FloatingImage key={i} {...img} mouseX={mouseX} mouseY={mouseY} />
       ))}
 
       <motion.div

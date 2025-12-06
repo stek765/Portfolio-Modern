@@ -43,7 +43,7 @@ function GlowOrb({
 }) {
   return (
     <motion.div
-      className={`absolute rounded-full blur-3xl ${className}`}
+      className={`absolute rounded-full blur-2xl will-change-transform ${className}`}
       style={{
         width: size,
         height: size,
@@ -66,10 +66,13 @@ export default function AnimatedBackground() {
   const smoothX = useSpring(mouseX, { damping: 50, stiffness: 100 });
   const smoothY = useSpring(mouseY, { damping: 50, stiffness: 100 });
   const [particles] = useState(() => 
-    Array.from({ length: 30 }, (_, i) => ({ id: i, delay: i * 0.5 }))
+    Array.from({ length: 15 }, (_, i) => ({ id: i, delay: i * 0.5 }))
   );
 
   useEffect(() => {
+    // Disable mouse parallax on mobile/touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
