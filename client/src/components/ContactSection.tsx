@@ -94,7 +94,7 @@ export default function ContactSection() {
             </motion.a>
 
             <motion.a
-              href="/cv.pdf"
+              href="./cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="link-resume"

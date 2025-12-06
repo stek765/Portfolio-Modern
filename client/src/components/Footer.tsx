@@ -22,7 +22,7 @@ export default function Footer() {
 
         <div className="flex items-center gap-6">
           <motion.a
-            href="/cv.pdf"
+            href="./cv.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground/60 hover:text-primary transition-colors flex items-center gap-2 text-sm font-mono"
