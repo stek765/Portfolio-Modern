@@ -1,8 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { Badge } from '@/components/ui/badge';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const technologies = ['C', 'C++', 'Rust', 'Assembly', 'Python', 'Embedded'];
 
@@ -11,154 +9,18 @@ const stats = [
   { value: '5+', label: 'Languages' },
 ];
 
-const photos = [
-  { src: 'https://avatars.githubusercontent.com/u/52193428?v=4', alt: 'Stefano Zanolli' },
-  { src: 'https://i.ibb.co/dnNfhj9/fdfcc6c8-c099-4301-8f00-7cf40e867c56.jpg', alt: 'Portfolio Highlight' },
-  { src: 'https://i.ibb.co/JRSqrDq8/50211851-9113-4ff6-a96a-e137a386a3fb.jpg', alt: 'Portfolio Highlight' },
-];
-
-function NetflixCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const autoPlayRef = useRef<NodeJS.Timeout>();
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 300 : -300,
-      opacity: 0,
-      scale: 0.8,
-      rotateY: direction > 0 ? 45 : -45,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      rotateY: 0,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 300 : -300,
-      opacity: 0,
-      scale: 0.8,
-      rotateY: direction < 0 ? 45 : -45,
-    }),
-  };
-
-  const swipeConfidenceThreshold = 10000;
-  const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity;
-  };
-
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection);
-    setCurrentIndex((prevIndex) => {
-      let nextIndex = prevIndex + newDirection;
-      if (nextIndex < 0) nextIndex = photos.length - 1;
-      if (nextIndex >= photos.length) nextIndex = 0;
-      return nextIndex;
-    });
-  };
-
-  useEffect(() => {
-    autoPlayRef.current = setInterval(() => {
-      paginate(1);
-    }, 5000);
-
-    return () => {
-      if (autoPlayRef.current) {
-        clearInterval(autoPlayRef.current);
-      }
-    };
-  }, []);
-
-  const handleManualNav = (dir: number) => {
-    if (autoPlayRef.current) {
-      clearInterval(autoPlayRef.current);
-    }
-    paginate(dir);
-    autoPlayRef.current = setInterval(() => {
-      paginate(1);
-    }, 5000);
-  };
-
+function ProfileImage() {
   return (
     <div className="relative group">
       <div className="absolute -inset-4 bg-gradient-to-r from-primary via-purple-500 to-cyan-500 rounded-2xl blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
       
       <div className="relative w-full max-w-sm mx-auto aspect-square overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-card/50">
-        <AnimatePresence initial={false} custom={direction} mode="popLayout">
-          <motion.img
-            key={currentIndex}
-            src={photos[currentIndex].src}
-            alt={photos[currentIndex].alt}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.3 },
-              scale: { duration: 0.4 },
-              rotateY: { duration: 0.4 },
-            }}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={1}
-            onDragEnd={(e, { offset, velocity }) => {
-              const swipe = swipePower(offset.x, velocity.x);
-              if (swipe < -swipeConfidenceThreshold) {
-                handleManualNav(1);
-              } else if (swipe > swipeConfidenceThreshold) {
-                handleManualNav(-1);
-              }
-            }}
-            className="absolute inset-0 w-full h-full object-cover cursor-grab active:cursor-grabbing"
-          />
-        </AnimatePresence>
-
+        <img
+          src="https://avatars.githubusercontent.com/u/52193428?v=4"
+          alt="Stefano Zanolli"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent pointer-events-none" />
-
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 backdrop-blur-sm hover:bg-black/40"
-          onClick={() => handleManualNav(-1)}
-          data-testid="button-carousel-prev"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </Button>
-
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 backdrop-blur-sm hover:bg-black/40"
-          onClick={() => handleManualNav(1)}
-          data-testid="button-carousel-next"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </Button>
-
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-          {photos.map((_, index) => (
-            <motion.button
-              key={index}
-              onClick={() => {
-                setDirection(index > currentIndex ? 1 : -1);
-                setCurrentIndex(index);
-              }}
-              className={`w-2 h-2 rounded-full transition-all ${
-                index === currentIndex
-                  ? 'bg-primary w-6'
-                  : 'bg-white/30 hover:bg-white/50'
-              }`}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              data-testid={`button-carousel-dot-${index}`}
-            />
-          ))}
-        </div>
       </div>
 
       <motion.div
@@ -198,7 +60,7 @@ export default function AboutSection() {
             style={{ y: imageY }}
             className="relative order-2 lg:order-1"
           >
-            <NetflixCarousel />
+            <ProfileImage />
 
             <div className="flex justify-center gap-6 mt-16">
               {stats.map((stat, i) => (
