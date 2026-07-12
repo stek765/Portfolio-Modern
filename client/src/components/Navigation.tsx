@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const navItems = [
   { label: 'Projects', href: '#projects' },
   { label: 'About', href: '#about' },
+  { label: 'Books', href: '#books' },
   { label: 'Contact', href: '#contact' },
 ];
 

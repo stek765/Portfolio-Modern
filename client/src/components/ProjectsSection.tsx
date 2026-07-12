@@ -9,7 +9,7 @@ const projects: Project[] = [
     description: 'IoT gateway bridging STM32 sensors with MQTT and a secure Flask dashboard for real-time monitoring.',
     image: 'https://github.com/user-attachments/assets/88ab8731-dce1-4559-97c1-71feca898e13',
     technologies: ['C', 'Python', 'MQTT', 'Flask'],
-    githubUrl: 'https://github.com/stek765',
+    githubUrl: 'https://github.com/stek765/FirmBox-Gateway',
   },
   {
     id: 'visual-crypto',
@@ -17,7 +17,7 @@ const projects: Project[] = [
     description: 'Splitting images into random shares that reveal the original only when overlaid.',
     image: 'https://github.com/user-attachments/assets/9b9c47bc-6ef2-465e-b443-8a44740388eb',
     technologies: ['Python', 'Cryptography'],
-    githubUrl: 'https://github.com/stek765',
+    githubUrl: 'https://github.com/stek765/visual-cryptography',
   },
   {
     id: 'pgp',
@@ -25,7 +25,15 @@ const projects: Project[] = [
     description: 'Secure email protocol ensuring confidentiality, integrity, and authenticity.',
     image: 'https://github.com/user-attachments/assets/c8882ba4-c2c5-4351-9f49-3359c6d18c4e',
     technologies: ['Python', 'Security', 'PGP'],
-    githubUrl: 'https://github.com/stek765',
+    githubUrl: 'https://github.com/stek765/PGP-implementation',
+  },
+  {
+    id: 'crypto-notes',
+    title: 'Cryptography & Network Security',
+    description: 'Notes, diagrams, and summaries on the fundamentals of modern cryptography and network security.',
+    image: 'https://github.com/user-attachments/assets/3edce1cf-e016-4763-99a5-88076f285b04',
+    technologies: ['Cryptography', 'Security', 'Notes'],
+    githubUrl: 'https://github.com/stek765/Crittografia-e-Network-Security',
   },
   {
     id: 'wifi-printers',
@@ -33,7 +41,7 @@ const projects: Project[] = [
     description: 'Enabling legacy printers to receive files and print wirelessly over LAN.',
     image: 'https://github.com/user-attachments/assets/a0946e1d-9718-4c6c-8316-e70fdceef021',
     technologies: ['Embedded', 'Networking'],
-    githubUrl: 'https://github.com/stek765',
+    githubUrl: 'https://github.com/stek765/Adding-Wi-Fi-to-Printers',
   },
   {
     id: 'assembly',
@@ -41,7 +49,7 @@ const projects: Project[] = [
     description: 'Exploration of x86-64 Assembly, system calls, and memory management.',
     image: 'https://github.com/user-attachments/assets/8b054e0c-4a96-4ed8-8834-f7906385aa52',
     technologies: ['Assembly', 'x86-64'],
-    githubUrl: 'https://github.com/stek765',
+    githubUrl: 'https://github.com/stek765/ASSEMBLY-learning',
   },
   {
     id: 'rust-learning',
@@ -49,7 +57,7 @@ const projects: Project[] = [
     description: 'Memory safety, concurrency, and systems programming exercises.',
     image: 'https://github.com/user-attachments/assets/09f5b0d1-8f71-4bd1-aa74-dd95e0f52891',
     technologies: ['Rust', 'Systems'],
-    githubUrl: 'https://github.com/stek765',
+    githubUrl: 'https://github.com/stek765/RUST-learning',
   },
   {
     id: 'c-learning',
@@ -57,7 +65,7 @@ const projects: Project[] = [
     description: 'Memory management, pointers, and system-level programming.',
     image: 'https://github.com/user-attachments/assets/b404ce45-e485-4583-b89d-a4dea663dbc4',
     technologies: ['C', 'Low-Level'],
-    githubUrl: 'https://github.com/stek765',
+    githubUrl: 'https://github.com/stek765/C-learning',
   },
   {
     id: 'calory-app',
@@ -65,7 +73,7 @@ const projects: Project[] = [
     description: 'Nutritional tracking integrating FatSecret API for food calculations.',
     image: 'https://github.com/user-attachments/assets/0983c65b-0ee6-4094-8fc7-1e5c219caefa',
     technologies: ['JavaScript', 'API'],
-    githubUrl: 'https://github.com/stek765',
+    githubUrl: 'https://github.com/stek765/Calory-App',
   },
 ];
 

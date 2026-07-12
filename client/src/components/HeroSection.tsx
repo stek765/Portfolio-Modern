@@ -70,6 +70,10 @@ function FloatingImage({ src, alt, className, delay, mouseX, mouseY }: { src: st
         <img
           src={src}
           alt={alt}
+          width={128}
+          height={128}
+          loading="lazy"
+          decoding="async"
           className="relative w-24 h-24 sm:w-32 sm:h-32 object-contain rounded-xl drop-shadow-2xl"
         />
       </motion.div>
@@ -87,7 +91,6 @@ export default function HeroSection() {
   const mouseY = useMotionValue(0);
 
   useEffect(() => {
-    // Disable mouse parallax on mobile/touch devices to save performance
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
     const handleMouseMove = (e: MouseEvent) => {

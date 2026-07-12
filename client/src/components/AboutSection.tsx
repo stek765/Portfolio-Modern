@@ -18,6 +18,10 @@ function ProfileImage() {
         <img
           src="https://avatars.githubusercontent.com/u/52193428?v=4"
           alt="Stefano Zanolli"
+          width={400}
+          height={400}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent pointer-events-none" />
