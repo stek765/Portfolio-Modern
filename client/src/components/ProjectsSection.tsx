@@ -12,6 +12,14 @@ const projects: Project[] = [
     githubUrl: 'https://github.com/stek765/FirmBox-Gateway',
   },
   {
+    id: 'fourier-signal',
+    title: 'Fourier Transform & DSP',
+    description: 'Decomposing signals into their frequency components — real-time equalizer, phasors, and spectral analysis.',
+    image: `${import.meta.env.BASE_URL}fourier-waves.jpg`,
+    technologies: ['Python', 'NumPy/SciPy', 'DSP'],
+    githubUrl: 'https://github.com/stek765/Sistemi-Segnali-ed-Elaborazione-immagini',
+  },
+  {
     id: 'visual-crypto',
     title: 'Visual Cryptography',
     description: 'Splitting images into random shares that reveal the original only when overlaid.',

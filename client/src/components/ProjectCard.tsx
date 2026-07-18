@@ -56,19 +56,19 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ rotateX, rotateY, transformPerspective: 1000 }}
-      className="group block relative rounded-2xl overflow-hidden"
+      className="group block relative rounded-2xl overflow-hidden h-full"
       data-testid={`card-project-${project.id}`}
     >
       <motion.div
         className="absolute -inset-1 bg-gradient-to-r from-primary/50 via-purple-500/50 to-cyan-500/50 rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition-all duration-500"
-        animate={{ 
+        animate={{
           backgroundPosition: isHovered ? ['0% 50%', '100% 50%', '0% 50%'] : '0% 50%'
         }}
         transition={{ duration: 3, repeat: Infinity }}
         style={{ backgroundSize: '200% 200%' }}
       />
 
-      <div className="relative bg-card/80 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden">
+      <div className="relative h-full flex flex-col bg-card/80 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden">
         {project.image && (
           <div className="relative h-48 overflow-hidden">
             <motion.img
@@ -139,7 +139,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         )}
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-4 flex-1 flex flex-col">
           <motion.h3
             className="font-semibold text-lg"
             animate={{ x: isHovered ? 4 : 0 }}
@@ -156,7 +156,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-2 pt-2" data-testid={`list-technologies-${project.id}`}>
+          <div className="flex flex-wrap gap-2 pt-2 mt-auto" data-testid={`list-technologies-${project.id}`}>
             {project.technologies.map((tech, i) => (
               <motion.div
                 key={tech}
