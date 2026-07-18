@@ -74,7 +74,7 @@ export default function ContactSection() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
           >
             <motion.a
-              href="mailto:stek@example.com"
+              href="mailto:stefanozanolli765@gmail.com"
               data-testid="link-email"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
