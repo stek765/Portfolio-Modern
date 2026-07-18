@@ -1,8 +1,23 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Mail, Github, FileText } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, Mail, Github, FileText, Check } from 'lucide-react';
+
+const CONTACT_EMAIL = 'stefanozanolli765@gmail.com';
 
 export default function ContactSection() {
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleEmailClick = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch {
+      // Clipboard API unavailable — mailto link still handles it
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -74,11 +89,27 @@ export default function ContactSection() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
           >
             <motion.a
-              href="mailto:stefanozanolli765@gmail.com"
+              href={`mailto:${CONTACT_EMAIL}`}
+              onClick={handleEmailClick}
               data-testid="link-email"
+              className="relative"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
+              <AnimatePresence>
+                {emailCopied && (
+                  <motion.span
+                    initial={{ opacity: 0, y: 8, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.9 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute -top-10 left-1/2 -translate-x-1/2 flex items-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground shadow-lg"
+                  >
+                    <Check className="w-3 h-3" />
+                    Email copiata!
+                  </motion.span>
+                )}
+              </AnimatePresence>
               <Button size="lg" className="group gap-2 relative overflow-hidden">
                 <motion.span
                   className="absolute inset-0 bg-gradient-to-r from-primary via-purple-500 to-primary bg-[length:200%_100%]"

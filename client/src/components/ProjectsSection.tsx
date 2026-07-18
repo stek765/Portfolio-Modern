@@ -4,6 +4,14 @@ import ProjectCard, { type Project } from './ProjectCard';
 
 const projects: Project[] = [
   {
+    id: 'shared-kb-audio',
+    title: 'Shared KB for LLM Audio Recordings',
+    description: 'Agentic pipeline that turns university lecture recordings into structured Obsidian notes, queryable via RAG and Claude.',
+    image: `${import.meta.env.BASE_URL}audio-kb-network.svg`,
+    technologies: ['Python', 'Claude', 'RAG', 'ChromaDB'],
+    githubUrl: 'https://github.com/stek765/Shared-KB-for-LLM-audio-Recordings',
+  },
+  {
     id: 'firmbox',
     title: 'FirmBox-Gateway',
     description: 'IoT gateway bridging STM32 sensors with MQTT and a secure Flask dashboard for real-time monitoring.',
