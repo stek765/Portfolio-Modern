@@ -12,12 +12,12 @@ const projects: Project[] = [
     githubUrl: 'https://github.com/stek765/Shared-KB-for-LLM-audio-Recordings',
   },
   {
-    id: 'firmbox',
-    title: 'FirmBox-Gateway',
-    description: 'IoT gateway bridging STM32 sensors with MQTT and a secure Flask dashboard for real-time monitoring.',
-    image: 'https://github.com/user-attachments/assets/88ab8731-dce1-4559-97c1-71feca898e13',
-    technologies: ['C', 'Python', 'MQTT', 'Flask'],
-    githubUrl: 'https://github.com/stek765/FirmBox-Gateway',
+    id: 'x509-chat',
+    title: 'X.509 Authorized WebSocket Chat',
+    description: 'LAN chat and file sharing secured by mutual TLS: a self-signed CA issues per-user X.509 certificates, so only authorized clients can join the WebSocket session.',
+    image: `${import.meta.env.BASE_URL}x509-chat.svg`,
+    technologies: ['Python', 'Flask', 'TLS/X.509', 'WebSocket'],
+    githubUrl: 'https://github.com/stek765/X-509_authorized_websocket_chat',
   },
   {
     id: 'fourier-signal',
@@ -42,6 +42,14 @@ const projects: Project[] = [
     image: 'https://github.com/user-attachments/assets/c8882ba4-c2c5-4351-9f49-3359c6d18c4e',
     technologies: ['Python', 'Security', 'PGP'],
     githubUrl: 'https://github.com/stek765/PGP-implementation',
+  },
+  {
+    id: 'firmbox',
+    title: 'FirmBox-Gateway',
+    description: 'IoT gateway bridging STM32 sensors with MQTT and a secure Flask dashboard for real-time monitoring.',
+    image: 'https://github.com/user-attachments/assets/88ab8731-dce1-4559-97c1-71feca898e13',
+    technologies: ['C', 'Python', 'MQTT', 'Flask'],
+    githubUrl: 'https://github.com/stek765/FirmBox-Gateway',
   },
   {
     id: 'crypto-notes',
